@@ -19,7 +19,7 @@
 
 ## Cross plattform
 
-.NET apper kan være for:
+.NET apper kan være for (nov 2020)
 
 - Windows
 - macOS
@@ -29,16 +29,14 @@
 - tvOS
 - watchOS
 
-Processor arkitektur:
+Processor arkitektur (nov 2020):
 
 - x64
 - x86
 - ARM32
 - ARM64
 
-.NET lets you use platform-specific capabilities, such as operating system APIs. Examples are Windows Forms and WPF on Windows and the native bindings to each mobile platform from Xamarin.
-
-For more information, see [Supported OS lifecycle policy](https://github.com/dotnet/core/blob/master/os-lifecycle-policy.md) and [.NET RID Catalog](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog).
+.NET kan ha plattformspesifikke funksjoner, f.eks. API mot OS og funksjoner man kun finner på mobiltelefoner. 
 
 ## Open source
 
@@ -49,6 +47,7 @@ For more information, see [Supported OS lifecycle policy](https://github.com/dot
 
 .NET kjører på Windows, macOS, and Linux. 
 Det opppdateres for sikkerhet hver andre tirsdag hver måned. 
+
 .NET binary distribueres fra Microsoft. Microsoft tar også ansvaret for å bygge og teste dem. Distribusjonen følger Microsoft sine rutiner og metoder. 
 Red Hat støtter .NET på RHEL. Red Hat og Microsoft samarbeidet for å sikret at .NET fungerer godt på RHEL.
 Tizen støtter .NET på Tizen plattform. 
@@ -63,265 +62,19 @@ Tizen støtter .NET på Tizen plattform.
 
 ### IDEs
 
-The integrated development environments for .NET include:
+For å kode .NET så finnes blant annet:
 
-- [Visual Studio](https://visualstudio.microsoft.com/vs/)
-- [Visual Studio Code](https://code.visualstudio.com/)
+- [Visual Studio](https://visualstudio.microsoft.com/vs/) 
 - [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/)
-- [GitHub Codespaces](https://github.com/features/codespaces)
+- [Visual Studio Code](https://code.visualstudio.com/) 
+- [GitHub Codespaces](https://github.com/features/codespaces) - Nytt online verktøy, pr nov 2020 i beta. 
 
-### SDK and runtimes
+## Deployment modeller
 
-The [.NET SDK](https://docs.microsoft.com/en-us/dotnet/core/sdk) is a set of libraries and tools for developing and running .NET applications.
+.NET kan leveres etter to modeller:
 
-When you [download .NET](https://dotnet.microsoft.com/download/dotnet-core/), you can choose the SDK or a *runtime*, such as the .NET runtime or the ASP.NET Core runtime. Install a runtime on a machine that you want to prepare for running .NET apps. Install the SDK on a machine that you want to use for development. When you download the SDK, you automatically get the runtimes with it.
+- Publisert som en "self-contained". Da inneholder pakken alt den trenger for å kjøre. 
+- Publisert som "framework-dependent". Da er koden avhengig at det er satt hvor det skal kjøre. 
 
-The SDK download includes the following components:
-
-- The [.NET CLI](https://docs.microsoft.com/en-us/dotnet/core/tools/). Command-line tools that you can use for local development and continuous integration scripts.
-- The `dotnet` [driver](https://docs.microsoft.com/en-us/dotnet/core/tools/#driver). A CLI command that runs framework-dependent apps.
-- The [Roslyn](https://github.com/dotnet/roslyn) and [F#](https://github.com/microsoft/visualfsharp) programming language compilers.
-- The [MSBuild](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild) build engine.
-- The [.NET runtime](https://docs.microsoft.com/en-us/dotnet/core/introduction#clr). Provides a type system, assembly loading, a garbage collector, native interop, and other basic services.
-- [Runtime libraries](https://docs.microsoft.com/en-us/dotnet/core/introduction#runtime-libraries). Provides primitive data types and fundamental utilities.
-- The ASP.NET Core runtime. Provides basic services for internet-connected apps, such as web apps, IoT apps, and mobile backends.
-- The desktop runtime. Provides basic services for Windows desktop apps, including Windows Forms and WPF.
-
-For more information, see the following resources:
-
-- [.NET SDK overview](https://docs.microsoft.com/en-us/dotnet/core/sdk)
-- [.NET CLI overview](https://docs.microsoft.com/en-us/dotnet/core/tools/)
-- [dotnet command](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet)
-
-### Project system and MSBuild
-
-A .NET app is built from source code by using [MSBuild](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild). A project file (*.csproj*, *.fsproj*, or *.vbproj*) specifies [targets](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-targets) and associated [tasks](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-tasks) that are responsible for compiling, packing, and publishing code. There are SDK identifiers that refer to standard collections of targets and tasks. The use of these identifiers helps keep project files small and easy to work with. For example, here is a project file for a console app:
-
-XMLCopy
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
-</Project>
-```
-
-And here's one for a web app:
-
-XMLCopy
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk.Web">
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
-</Project>
-```
-
-In these examples, the `Sdk` attribute of the `Project` element specifies a set of MSBuild targets and tasks that build the project. The `TargetFramework` element specifies the .NET version that the app depends on. You can edit the project file to add additional targets and tasks specific to the project.
-
-For more information, see [.NET project SDK overview](https://docs.microsoft.com/en-us/dotnet/core/project-sdk/overview) and [Target frameworks](https://docs.microsoft.com/en-us/dotnet/standard/frameworks).
-
-### CI/CD
-
-MSBuild and the .NET CLI can be used with various continuous integration tools and environments, such as:
-
-- [GitHub Actions](https://github.com/features/actions)
-- [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/user-guide/what-is-azure-devops)
-- [CAKE](https://cakebuild.net/)
-- [FAKE](https://fake.build/)
-
-For more information, see [Using .NET SDK and tools in Continuous Integration (CI)](https://docs.microsoft.com/en-us/dotnet/core/tools/using-ci-with-cli)
-
-### NuGet
-
-[NuGet](https://docs.microsoft.com/en-us/nuget/what-is-nuget) is an open-source package manager designed for .NET. A NuGet package is a *.zip* file with the `.nupkg` extension that contains compiled code (DLLs), other files related to that code, and a descriptive manifest that includes information like the package's version number. Developers with code to share create packages and publish them to [nuget.org](https://nuget.org/) or a private host. Developers who want to use shared code add a package to their project and can then call the API exposed by the package in their project code.
-
-For more information, see [NuGet documentation](https://docs.microsoft.com/en-us/nuget/).
-
-### .NET Interactive
-
-.NET Interactive is a group of CLI tools and APIs that enable users to create interactive experiences across the web, markdown, and notebooks.
-
-For more information, see the following resources:
-
-- [.NET In-Browser Tutorial](https://dotnet.microsoft.com/learn/dotnet/in-browser-tutorial/1)
-- [Using .NET notebooks with Jupyter on your machine](https://github.com/dotnet/interactive/blob/main/docs/NotebooksLocalExperience.md)
-- [.NET Interactive documentation](https://github.com/dotnet/interactive/blob/main/docs/README.md)
-
-## Execution models
-
-.NET apps run [managed code](https://docs.microsoft.com/en-us/dotnet/standard/managed-code) in a runtime environment known as the Common Language Runtime (CLR).
-
-### CLR
-
-The .NET [CLR](https://docs.microsoft.com/en-us/dotnet/standard/clr) is a cross-platform runtime that includes support for Windows, macOS, and Linux. The CLR handles memory allocation and management. The CLR is also a virtual machine that not only executes apps but also generates and compiles code using a just-in-time (JIT) compiler.
-
-For more information, see [Common Language Runtime (CLR) overview](https://docs.microsoft.com/en-us/dotnet/standard/clr).
-
-### JIT compiler and IL
-
-Higher-level .NET languages, such as C#, compile down to a hardware-agnostic instruction set, which is called Intermediate Language (IL). When an app runs, the JIT compiler translates IL to machine code that the processor understands. JIT compilation happens on the same machine that the code is going to run on.
-
-Since JIT compilation occurs during execution of the application, the compilation time is part of the run time. Therefore, JIT compilers have to balance time spent optimizing code against the savings that the resulting code can produce. But a JIT compiler knows the actual hardware and can free developers from having to ship different implementations for different platforms.
-
-The .NET JIT compiler can do *tiered compilation*, which means it can recompile individual methods at run time. This feature lets it compile quickly while still being able to produce a highly tuned version of the code for frequently used methods.
-
-For more information, see [Managed execution process](https://docs.microsoft.com/en-us/dotnet/standard/managed-execution-process) and [Tiered compilation](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#tiered-compilation).
-
-### AOT compiler
-
-The default experience for most .NET workloads is the JIT compiler, but .NET offers two forms of ahead-of-time (AOT) compilation:
-
-- Some scenarios require 100% AOT compilation. An example is [iOS](https://docs.microsoft.com/en-us/xamarin/ios/).
-- In other scenarios, most of an app's code is AOT-compiled but some is JIT-compiled. Some code patterns aren't friendly to AOT (like generics). An example of this form of AOT compilation is the [ready-to-run](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#readytorun-images) publish option. This form of AOT offers the benefits of AOT without its drawbacks.
-
-### Automatic memory management
-
-The *garbage collector* (GC) manages the allocation and release of memory for applications. Each time your code creates a new object, the CLR allocates memory for the object from the [managed heap](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals#the-managed-heap). As long as address space is available in the managed heap, the runtime continues to allocate space for new objects. When not enough free address space remains, the GC checks for objects in the managed heap that are no longer being used by the application. It then reclaims that memory.
-
-The GC is one of the CLR services that help ensure *memory safety*. A program is memory safe if it accesses only allocated memory. For instance, the runtime ensures that an app doesn't access unallocated memory beyond the bounds of an array.
-
-For more information, see [Automatic memory management](https://docs.microsoft.com/en-us/dotnet/standard/automatic-memory-management) and [Fundamentals of garbage collection](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals).
-
-### Working with unmanaged resources
-
-Sometimes code needs to reference *unmanaged resources*. Unmanaged resources are resources that aren't automatically maintained by the .NET runtime. For example, a file handle is an unmanaged resource. A [FileStream](https://docs.microsoft.com/en-us/dotnet/api/system.io.filestream) object is a managed object, but it references a file handle, which is unmanaged. When you're done using the [FileStream](https://docs.microsoft.com/en-us/dotnet/api/system.io.filestream), you need to explicitly release the file handle.
-
-In .NET, objects that reference unmanaged resources implement the [IDisposable](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable) interface. When you're done using the object, you call the object's [Dispose()](https://docs.microsoft.com/en-us/dotnet/api/system.idisposable.dispose#System_IDisposable_Dispose) method, which is responsible for releasing any unmanaged resources. The .NET languages provide a convenient `using` statement ([C#](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using), [F#](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/resource-management-the-use-keyword), [VB](https://docs.microsoft.com/en-us/dotnet/visual-basic/language-reference/statements/using-statement)) that ensures the `Dispose` method is called.
-
-For more information, see [Cleaning up unmanaged resources](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/unmanaged).
-
-## Deployment models
-
-.NET apps can be published in two different modes:
-
-- Publishing an app as *self-contained* produces an executable file that includes the .NET [runtime](https://docs.microsoft.com/en-us/dotnet/core/introduction#sdk-and-runtimes) and [libraries](https://docs.microsoft.com/en-us/dotnet/core/introduction#runtime-libraries), and the application and its dependencies. Users of the application can run it on a machine that doesn't have the .NET runtime installed. Self-contained apps are platform-specific, and they can optionally be published using a form of [AOT compilation](https://docs.microsoft.com/en-us/dotnet/core/introduction#aot-compiler).
-
-- Publishing an app as *framework-dependent* produces an executable file and binary files (*.dll* files) that include only the application itself and its dependencies. Users of the application have to separately install the .NET [runtime](https://docs.microsoft.com/en-us/dotnet/core/introduction#sdk-and-runtimes). The executable file is platform-specific, but The *.dll* files of framework-dependent applications are cross-platform.
-
-  You can install multiple versions of the runtime side by side to run framework-dependent apps that target different versions of the runtime. For more information, see [Target frameworks](https://docs.microsoft.com/en-us/dotnet/standard/frameworks).
-
-Executables are produced for specific target platforms, which you specify with a [runtime identifier (RID)](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog).
-
-For more information, see [.NET application publishing overview](https://docs.microsoft.com/en-us/dotnet/core/deploying/) and [Introduction to .NET and Docker](https://docs.microsoft.com/en-us/dotnet/core/docker/introduction).
-
-## Runtime libraries
-
-.NET has an expansive standard set of class libraries, known as [runtime libraries](https://docs.microsoft.com/en-us/dotnet/standard/glossary#runtime), [framework libraries](https://docs.microsoft.com/en-us/dotnet/standard/glossary#framework-libraries), or the [base class library (BCL)](https://docs.microsoft.com/en-us/dotnet/standard/glossary#bcl). These libraries provide implementations for many general-purpose and workload-specific types and utility functionality.
-
-Here are some examples of types defined in the .NET runtime libraries:
-
-- Primitive types, such as [System.Boolean](https://docs.microsoft.com/en-us/dotnet/api/system.boolean) and [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/system.int32).
-- Collections, such as [System.Collections.Generic.List](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1) and [System.Collections.Generic.Dictionary](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2).
-- Data types, such as [System.Data.DataSet](https://docs.microsoft.com/en-us/dotnet/api/system.data.dataset) and [System.Data.DataTable](https://docs.microsoft.com/en-us/dotnet/api/system.data.datatable).
-- Network utility types, such as [System.Net.Http.HttpClient](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient).
-- [File and stream I/O](https://docs.microsoft.com/en-us/dotnet/standard/io/) utility types, such as [System.IO.FileStream](https://docs.microsoft.com/en-us/dotnet/api/system.io.filestream) and [System.IO.TextWriter](https://docs.microsoft.com/en-us/dotnet/api/system.io.textwriter).
-- [Serialization](https://docs.microsoft.com/en-us/dotnet/standard/serialization/) utility types, such as [System.Text.Json.JsonSerializer](https://docs.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializer) and [System.Xml.Serialization.XmlSerializer](https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlserializer).
-- High-performance types, such as [System.Span](https://docs.microsoft.com/en-us/dotnet/api/system.span-1), [System.Numerics.Vector](https://docs.microsoft.com/en-us/dotnet/api/system.numerics.vector), and [Pipelines](https://docs.microsoft.com/en-us/dotnet/standard/io/pipelines).
-
-For more information, see the [Runtime libraries overview](https://docs.microsoft.com/en-us/dotnet/standard/runtime-libraries-overview). The source code for the libraries is in [the GitHub dotnet/runtime repository](https://github.com/dotnet/runtime/tree/master/src/libraries).
-
-### Extensions to the runtime libraries
-
-Libraries for some commonly used application functionality aren't included in the runtime libraries but are made available in NuGet packages, such as the following:
-
-| NuGet package                                                | Documentation                                                |
-| :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting) | [Application lifetime management (Generic Host)](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) |
-| [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection) | [Dependency injection (DI)](https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection) |
-| [Microsoft.Extensions.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Configuration) | [Configuration](https://docs.microsoft.com/en-us/dotnet/core/extensions/configuration) |
-| [Microsoft.Extensions.Logging](https://www.nuget.org/packages/Microsoft.Extensions.Logging) | [Logging](https://docs.microsoft.com/en-us/dotnet/core/extensions/logging) |
-| [Microsoft.Extensions.Options](https://www.nuget.org/packages/Microsoft.Extensions.Options) | [Options pattern](https://docs.microsoft.com/en-us/dotnet/core/extensions/options) |
-
-For more information, see the [dotnet/extensions repository on GitHub](https://github.com/dotnet/extensions).
-
-## Data access
-
-.NET provides an Object/Relational Mapper (ORM) and a way to write SQL queries in code.
-
-### Entity Framework Core
-
-Entity Framework (EF) Core is an [open source](https://github.com/aspnet/EntityFrameworkCore) and cross-platform data-access technology that can serve as an ORM. EF Core lets you work with a database by referring to .NET objects in code. It reduces the amount of data-access code you would otherwise need to write and test. EF Core supports many database engines.
-
-For more information, see [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) and [Database Providers](https://docs.microsoft.com/en-us/ef/core/providers/).
-
-### LINQ
-
-Language-integrated query (LINQ) lets you write declarative code for operating on data. The data can be in many forms (such as in-memory objects, a SQL database, or an XML document), but the LINQ code you write typically doesn't differ by data source.
-
-For more information, see [LINQ (Language Integrated Query) overview](https://docs.microsoft.com/en-us/dotnet/standard/linq/).
-
-## .NET terminology
-
-To understand .NET documentation, it can help to know how the usage of some terms has changed over time.
-
-### .NET Core and .NET 5
-
-In 2002, Microsoft released [.NET Framework](https://docs.microsoft.com/en-us/dotnet/framework/get-started/overview), a development platform for creating Windows apps. Today .NET Framework is at version 4.8 and is still [supported by Microsoft](https://dotnet.microsoft.com/platform/support/policy/dotnet-framework).
-
-In 2014, Microsoft began writing a cross-platform, open-source successor to .NET Framework. This new implementation of .NET was named .NET Core until it reached version 3.1. The next version after .NET Core 3.1 is .NET 5.0, which is currently in preview. Version number 4 was skipped to avoid confusion between this implementation of .NET and .NET Framework 4.8. The name "Core" was dropped to make clear that this is now the main implementation of .NET.
-
-This article is about .NET 5, but much of the documentation for .NET 5 still has references to ".NET Core" or ".NET Framework". In addition, "Core" remains in the names [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) and [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/).
-
-The documentation also refers to .NET Standard. [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) is an API specification that lets you develop class libraries for multiple implementations of .NET.
-
-For more information, see [.NET architectural components](https://docs.microsoft.com/en-us/dotnet/standard/components).
-
-### Overloaded terms
-
-Some of the terminology for .NET can be confusing because the same word is used in different ways in different contexts. Here are a few of the more prominent instances:
-
-- **runtime**
-
-  | Context                                                      | "runtime" meaning                                            |
-  | :----------------------------------------------------------- | :----------------------------------------------------------- |
-  | [Common Language Runtime (CLR)](https://docs.microsoft.com/en-us/dotnet/core/introduction#clr) | The execution environment for a managed program. The OS is part of the runtime environment but isn't part of the .NET runtime. |
-  | [.NET runtime on the .NET download page](https://dotnet.microsoft.com/download/dotnet-core) | The [CLR](https://docs.microsoft.com/en-us/dotnet/core/introduction#clr) and [runtime libraries](https://docs.microsoft.com/en-us/dotnet/core/introduction#runtime-libraries), which together provide support for running [framework-dependent](https://docs.microsoft.com/en-us/dotnet/core/introduction#deployment-models) apps. The page also offers runtime choices for ASP.NET Core server apps and Windows desktop apps. |
-  | [Runtime Identifier (RID)](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) | The OS platform and CPU architecture that a .NET app runs on. For example: Windows x64, Linux x64. |
-
-- **framework**
-
-  | Context                        | "framework" meaning                                          |
-  | :----------------------------- | :----------------------------------------------------------- |
-  | .NET Framework                 | The original, Windows-only implementation of .NET. "Framework" is capitalized. |
-  | target framework               | The collection of APIs that a .NET app or library relies on. Examples: .NET Core 3.1, .NET Standard 2.0 |
-  | Target Framework Moniker (TFM) | A TFM is a standardized token format for specifying the target framework of a .NET app or library. Example: `net462` for .NET Framework 4.6.2. |
-  | framework-dependent app        | An app that can only run on a machine where you've installed the runtime from the [.NET download page](https://dotnet.microsoft.com/download/dotnet-core). "Framework" in this usage is the same thing as the "runtime" that you download from the .NET download page. |
-  | framework libraries            | Sometimes used as a synonym for [runtime libraries](https://docs.microsoft.com/en-us/dotnet/core/introduction#runtime-libraries). |
-
-- **SDK**
-
-  | Context                                                      | "SDK" meaning                                                |
-  | :----------------------------------------------------------- | :----------------------------------------------------------- |
-  | [SDK on the .NET download page](https://docs.microsoft.com/en-us/dotnet/core/introduction#sdk-and-runtimes) | A collection of tools and libraries that you download and install to develop and run .NET apps. Includes the CLI, MSBuild, the .NET runtime, and other components. |
-  | [SDK-style project](https://docs.microsoft.com/en-us/dotnet/core/introduction#project-system-and-msbuild) | A set of MSBuild targets and tasks that specifies how to build a project for a particular app type. The SDK in this sense is specified by using the `Sdk` attribute of the `Project` element in a project file. |
-
-- **platform**
-
-  | Context        | "platform" meaning                                           |
-  | :------------- | :----------------------------------------------------------- |
-  | cross platform | In this term, "platform" means an operating system and the hardware it runs on, such as Windows, macOS, Linux, iOS, and Android. |
-  | .NET platform  | Usage varies. The reference may be to one implementation of .NET (such as .NET Framework or .NET 5) or to an overarching concept of .NET including all implementations. |
-
-For more information about .NET terminology, see the [.NET glossary](https://docs.microsoft.com/en-us/dotnet/standard/glossary).
-
-## Advanced scenarios
-
-The following sections explain some capabilities of .NET that are useful in advanced scenarios.
-
-### Native interop
-
-Every operating system includes an application programming interface (API) that provides system services. .NET provides several ways to call those APIs.
-
-The main way to interoperate with native APIs is via "platform invoke" or P/Invoke for short. P/Invoke is supported across Linux and Windows platforms. A Windows-only way of interoperating is known as "COM interop," which works with [COM components](https://docs.microsoft.com/en-us/cpp/atl/introduction-to-com) in managed code. It's built on top of the P/Invoke infrastructure, but it works in subtly different ways.
-
-For more information, see [Native interoperability](https://docs.microsoft.com/en-us/dotnet/standard/native-interop/).
-
-### Unsafe code
-
-Depending on language support, the CLR lets you access native memory and do pointer arithmetic via `unsafe` code. These operations are needed for certain algorithms and system interoperability. Although powerful, use of unsafe code is discouraged unless it's necessary to interoperate with system APIs or implement the most efficient algorithm. Unsafe code may not execute the same way in different environments and also loses the benefits of a garbage collector and type safety. It's recommended to confine and centralize unsafe code as much as possible and test that code thoroughly.
-
-For more information, see [Unsafe code and pointers](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/unsafe-code-pointers/).
+Men kan installere så mange versjoner av runtime, versjoner av pakker og frameworks som man vil. 
+Microsoft har som kjent meget god erfaring fra dll-hell, så dette kan de alt om. 
