@@ -14,11 +14,11 @@ En gang, hvis vi blir flere, skal jeg flytte repoet til et mer generelt sted og 
 
 ### Bakgrunnen til .NET
 
-​	[Introduksjon til .NET](Bakgrunnen\Introduksjon til .net.md) 
+​	[Introduksjon til .NET](docs\Bakgrunnen\Introduksjon til .net.md) 
 
-​	[Forskjellen mellom .net framework, .net core og .NET](Bakgrunnen\Forskjellen mellom .net framework, .net core og .NET.md) 
+​	[Forskjellen mellom .net framework, .net core og .NET](docs\Bakgrunnen\Forskjellen mellom .net framework, .net core og .NET.md) 
 
-​	[Historielinjen til .NET](Bakgrunnen\Historielinjen til .NET.md) 
+​	[Historielinjen til .NET](docs\Bakgrunnen\Historielinjen til .NET.md) 
 
 ### .NET Arkitektur
 
@@ -32,15 +32,15 @@ En gang, hvis vi blir flere, skal jeg flytte repoet til et mer generelt sted og 
 
 ​		Value types
 
-​		 [Value types](c#\Types\Value types.md) 
+​		 [Value types](docs\c#\Types\Value types.md) 
 
-​		[Refrence types](c#\Types\Refrence types.md) 
+​		[Refrence types](docs\c#\Types\Refrence types.md) 
 
-​			 [Class.md](c#\Types\Class.md) 
+​			 [Class.md](docs\c#\Types\Class.md) 
 
- 			[Interface.md](c#\Types\Interface.md) 
+ 			[Interface.md](docs\c#\Types\Interface.md) 
 
- 			[Delegate.md](c#\Types\Delegate.md) 
+ 			[Delegate.md](docs\c#\Types\Delegate.md) 
 
 
 

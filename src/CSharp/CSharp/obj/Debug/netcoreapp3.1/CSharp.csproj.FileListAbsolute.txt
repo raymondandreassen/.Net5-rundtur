@@ -1,0 +1,4 @@
+D:\repos\.Net5-rundtur\src\CSharp\CSharp\obj\Debug\netcoreapp3.1\CSharp.csprojAssemblyReference.cache
+D:\repos\.Net5-rundtur\src\CSharp\CSharp\obj\Debug\netcoreapp3.1\CSharp.AssemblyInfoInputs.cache
+D:\repos\.Net5-rundtur\src\CSharp\CSharp\obj\Debug\netcoreapp3.1\CSharp.AssemblyInfo.cs
+D:\repos\.Net5-rundtur\src\CSharp\CSharp\obj\Debug\netcoreapp3.1\CSharp.csproj.CoreCompileInputs.cache

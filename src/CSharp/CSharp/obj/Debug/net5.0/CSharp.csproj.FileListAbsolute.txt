@@ -1,0 +1,5 @@
+D:\repos\.Net5-rundtur\src\CSharp\CSharp\obj\Debug\net5.0\CSharp.csprojAssemblyReference.cache
+D:\repos\.Net5-rundtur\src\CSharp\CSharp\obj\Debug\net5.0\CSharp.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\.Net5-rundtur\src\CSharp\CSharp\obj\Debug\net5.0\CSharp.AssemblyInfoInputs.cache
+D:\repos\.Net5-rundtur\src\CSharp\CSharp\obj\Debug\net5.0\CSharp.AssemblyInfo.cs
+D:\repos\.Net5-rundtur\src\CSharp\CSharp\obj\Debug\net5.0\CSharp.csproj.CoreCompileInputs.cache
