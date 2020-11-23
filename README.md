@@ -16,7 +16,8 @@ Hvis det er innslag av powershell, vil det være pwsh som er referert til.
 
 ​	[Forskjellen mellom .net framework, .net core og .NET](docs\Bakgrunnen\Forskjellen mellom .net framework, .net core og .NET.md) 
 
-​	[Historielinjen til .NET](docs\Bakgrunnen\Historielinjen til .NET.md) 
+​	[Historielinjen til .NET](.\docs\Bakgrunnen\Historielinjen til .NET.md) 
+
 
 ### .NET Arkitektur
 
