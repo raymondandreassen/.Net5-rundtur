@@ -6,9 +6,7 @@ Valgte å skrive alt på norsk, siden det sikkert finnes et utall på engelsk.
 Alt av teknisk vil være c# og .NET. 
 Hvis det er innslag av powershell, vil det være pwsh som er referert til. 
 
-## Kudos til:
 
-En gang, hvis vi blir flere, skal jeg flytte repoet til et mer generelt sted og liste opp alle som har bidratt, men siden det bare er meg og vil sannsynligvis være det i all overskuelig fremtid, så blir dette en teit placeholder inntill videre. 
 
 # Innhold
 
