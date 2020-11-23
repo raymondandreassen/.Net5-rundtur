@@ -28,19 +28,9 @@ Hvis det er innslag av powershell, vil det være pwsh som er referert til.
 
 ​	Types
 
-​		Value types
+ 		[Value types.md](docs\c#\Types\Value types.md) 
 
-​		 [Value types](docs\c#\Types\Value types.md) 
-
-​		[Refrence types](docs\c#\Types\Refrence types.md) 
-
-​			 [Class](docs\c#\Types\Class.md) 
-
- 			[Interface](docs\c#\Types\Interface.md) 
-
- 			[Delegate](docs\c#\Types\Delegate.md) 
-
-
+ 		[Refrence types.md](docs\c#\Types\Refrence types.md) 
 
 ### Entity Framework
 
