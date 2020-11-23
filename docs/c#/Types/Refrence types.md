@@ -226,45 +226,47 @@ class SkalMottaEvent
 
 
 
-#### Vanlig pattern
+#### Vanlig bruk
 
 
 
 ```c#
-public class NoeData
-{
-    public event MyEventNoeData NoeDataRapporterer;
-    public int BukerID { get; set;}
-    
-    public void NoeDataSenderEvent()
+    internal class NoeData
     {
-        NoeDataRapporterer(this);
-    }
-}
+        internal event RunClass.MyEventNoeData NoeDataRapporterer;
 
+        internal int BrukerID { get; set; }
 
-public class HolderAvMasseData
-{
-    public void Main()
-    {
-        List<NoeData> brukerliste = new;
-        for(int i; i<=10; i++)
+        internal void NoeDataSenderEvent()
         {
-            NoeData obj = new { BrukerID = i; }
-            obj.
+            NoeDataRapporterer(this);
         }
-        
-        
-        
-        
-        
-        
-        
     }
-}
 
 
+    public class RunClass
+    {
+        internal delegate void MyEventNoeData(NoeData obj);
 
+        public void Main()
+        {
+            List<NoeData> brukerliste = new List<NoeData>();
+            for (int i = 0; i <= 10; i++)
+            {
+                NoeData obj = new NoeData() { BrukerID = i };
+                obj.NoeDataRapporterer += Obj_NoeDataRapporterer;
+            }
+
+            // Bare for å teste, vi kaller nr7 og sender
+            brukerliste[7].NoeDataSenderEvent();
+        }
+
+        private void Obj_NoeDataRapporterer(NoeData obj)
+        {
+            // Behandle det objektet som rapporterer. 
+            // obj vil i testen referere til nr7 (BrukerId vil være 7)           
+        }
+    }
 ```
 
 

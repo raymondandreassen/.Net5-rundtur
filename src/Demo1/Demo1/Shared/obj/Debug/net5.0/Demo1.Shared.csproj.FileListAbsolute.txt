@@ -1,0 +1,12 @@
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\bin\Debug\net5.0\Demo1.Shared.deps.json
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\bin\Debug\net5.0\Demo1.Shared.dll
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\bin\Debug\net5.0\ref\Demo1.Shared.dll
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\bin\Debug\net5.0\Demo1.Shared.pdb
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\obj\Debug\net5.0\Demo1.Shared.csprojAssemblyReference.cache
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\obj\Debug\net5.0\Demo1.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\obj\Debug\net5.0\Demo1.Shared.AssemblyInfoInputs.cache
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\obj\Debug\net5.0\Demo1.Shared.AssemblyInfo.cs
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\obj\Debug\net5.0\Demo1.Shared.csproj.CoreCompileInputs.cache
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\obj\Debug\net5.0\Demo1.Shared.dll
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\obj\Debug\net5.0\ref\Demo1.Shared.dll
+D:\repos\.Net5-rundtur\src\Demo1\Demo1\Shared\obj\Debug\net5.0\Demo1.Shared.pdb

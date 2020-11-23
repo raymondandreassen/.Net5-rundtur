@@ -36,11 +36,11 @@ En gang, hvis vi blir flere, skal jeg flytte repoet til et mer generelt sted og 
 
 ​		[Refrence types](docs\c#\Types\Refrence types.md) 
 
-​			 [Class.md](docs\c#\Types\Class.md) 
+​			 [Class](docs\c#\Types\Class.md) 
 
- 			[Interface.md](docs\c#\Types\Interface.md) 
+ 			[Interface](docs\c#\Types\Interface.md) 
 
- 			[Delegate.md](docs\c#\Types\Delegate.md) 
+ 			[Delegate](docs\c#\Types\Delegate.md) 
 
 
 

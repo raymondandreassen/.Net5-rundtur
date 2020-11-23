@@ -6,37 +6,42 @@ using System.Threading.Tasks;
 
 namespace CSharp.RefrenceTypes
 {
-    public class NoeData
+    internal class NoeData
     {
-        public event MyEventNoeData NoeDataRapporterer;
-        public int BukerID { get; set; }
+        internal event RunClass.MyEventNoeData NoeDataRapporterer;
 
-        public void NoeDataSenderEvent()
+        internal int BrukerID { get; set; }
+
+        internal void NoeDataSenderEvent()
         {
             NoeDataRapporterer(this);
         }
     }
 
 
-    public class HolderAvMasseData
+    public class RunClass
     {
+        internal delegate void MyEventNoeData(NoeData obj);
+
         public void Main()
         {
-            List<NoeData> brukerliste = new;
-            for (int i; i <= 10; i++)
+            List<NoeData> brukerliste = new List<NoeData>();
+            for (int i = 0; i <= 10; i++)
             {
-                NoeData obj = new { BrukerID = i;
+                NoeData obj = new NoeData() { BrukerID = i };
+                obj.NoeDataRapporterer += Obj_NoeDataRapporterer;
             }
-            obj.
-            }
 
+            // Bare for å teste, vi lar nr7 sende
+            brukerliste[7].NoeDataSenderEvent();
+        }
 
-
-
-
-
-
+        private void Obj_NoeDataRapporterer(NoeData obj)
+        {
+            // Behandle det objektet som rapporterer. 
+            // obj vil i testen referere til nr7            
+        }
     }
 }
 
-}
+
