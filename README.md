@@ -28,6 +28,18 @@ Hvis det er innslag av powershell, vil det være pwsh som er referert til.
 
 ​	Types
 
+​		 [Refrence types.md](docs\c#\Types\Refrence types.md) 
+
+​		 [Value types.md](docs\c#\Types\Value types.md) 
+
+
+
+
+
+Types
+
+
+
  		[Value types.md](docs\c#\Types\Value types.md) 
 
  		[Refrence types.md](docs\c#\Types\Refrence types.md) 
