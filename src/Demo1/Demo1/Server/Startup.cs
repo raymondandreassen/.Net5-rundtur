@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using System.Linq;
+using Demo1.Server.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Demo1.Server
 {
@@ -21,15 +23,26 @@ namespace Demo1.Server
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        // how to configure your application https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DbWorker>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("SqlDbContext")));
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
 
+            services.AddScoped(c => new AppServer()
+                .UseConfig(Configuration.GetSection("AppServer")));
+
+            services.AddTransient(c => new TransientService());
+
+            services.AddSingleton(c => new SingeltonService());
+
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddScoped<IDbInitializer, DbInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,14 +50,22 @@ namespace Demo1.Server
         {
             if (env.IsDevelopment())
             {
+                // DB seeder, hvis jeg enda IsDevelopment()...
+                var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+                using (var scope = scopeFactory.CreateScope())
+                {
+                    var dbInitializer = scope.ServiceProvider.GetService<IDbInitializer>();
+                    dbInitializer.Initialize();
+                    dbInitializer.SeedData();
+                }
+
                 app.UseDeveloperExceptionPage();
                 app.UseWebAssemblyDebugging();
             }
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseHsts(); // Default 30 days
             }
 
             app.UseHttpsRedirection();

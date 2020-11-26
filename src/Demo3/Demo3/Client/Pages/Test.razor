@@ -1,0 +1,53 @@
+﻿@page "/test"
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Demo3.Shared
+
+@inject HttpClient Http
+<h3>Test</h3>
+
+<table>
+    <tr>
+        <td><MatTextField Label="Fornavn" @bind-Value="melding.fornavn"></MatTextField></td>
+        <td><MatTextField Label="Etternavn" @bind-Value="melding.etternavn"></MatTextField></td>
+        <td><MatButton Raised="true" OnClick="RunTest1">Last..</MatButton></td>
+    </tr>
+@if(testmessage == null)
+{
+    <tr><td colspan="2"><div class="alert alert-info" role="alert">Trykk last for å hente info...</div></td></tr>
+}
+else
+{
+    foreach(var svaret in testmessage.svar)
+    {
+        <tr>
+            <td colspan="2"><div class="alert alert-success" role="alert">@svaret</div></td>
+        </tr>
+    }
+}
+</table>
+
+
+
+
+@code {
+    string navn = "";
+    TestMessageResponse testmessage;
+    TestMessage melding = new TestMessage();
+
+    async Task RunTest1(MouseEventArgs e)
+    {
+        try
+        {
+            HttpResponseMessage response = await Http.PostAsJsonAsync<TestMessage>("api/TestMessage", melding);
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                testmessage = JsonConvert.DeserializeObject<TestMessageResponse>(jsonString);
+            }
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+}

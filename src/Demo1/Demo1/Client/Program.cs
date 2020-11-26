@@ -28,6 +28,7 @@ namespace Demo1.Client
             {
                 builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
                 options.ProviderOptions.DefaultAccessTokenScopes.Add("api://demo1_server/user_impersonation");
+                options.UserOptions.RoleClaim = "roles";
             });
 
             await builder.Build().RunAsync();

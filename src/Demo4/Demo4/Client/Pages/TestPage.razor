@@ -1,0 +1,94 @@
+﻿@page "/testpage"
+
+@using Newtonsoft.Json
+@inject HttpClient Http
+
+<div class="alert alert-info" role="alert">
+    <h1>Test page</h1>
+    Kun for å hente TheKey, som: 
+    <ul>
+        <li>Leser inn config og binder den til et objekt.</li>
+        <li>Har den som Singelton</li>
+        <li>Serveren mottar den via DI</li>
+        <li>Og gjør tilgjengelig via Rest API get</li>
+    </ul>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <MatButton style="width:100%; margin: 10px 20px 10px 0px;" Raised="true" Label="Trykk for å hente TheKey" OnClick="GetTheKey"></MatButton>
+    <MatProgressBar Indeterminate="true" Closed="!loadingTheKey"></MatProgressBar>
+    <MatTextField Label="TheKeyResult" @bind-Value="theKey" FullWidth="true"></MatTextField>
+</div>
+
+<div class="alert alert-info" role="alert">
+    
+    <table width="100%">
+        <tr>
+            <td width="33%"><MatTextField Label="Antall land" TValue="int" @bind-Value="reqdata.Countries"></MatTextField></td>
+            <td width="33%"><MatTextField Label="Hvor lang pause (ms)?" TValue="int" @bind-Value="reqdata.Pause"></MatTextField> </td>
+            <td width="34%"><MatButton style="margin: 10px 20px 10px 0px;" Raised="true" Label="Kjør for pause" OnClick="GetCountries"></MatButton></td>
+        </tr>
+    </table>
+    
+    <MatProgressBar Indeterminate="true" Closed="!loadingCountries"></MatProgressBar>
+
+ @if(countrylist!=null)
+ {
+    <MatTable Items="@countrylist" LoadInitialData="true" Striped="true">
+        <MatTableHeader>
+                <th>Id</th>
+                <th>Completed</th>
+                <th>Todo</th>
+            </MatTableHeader>
+            <MatTableRow>
+                <td>@context.CountryId</td>
+                <td>@context.CountryCode</td>
+                <td>@context.Country</td>
+            </MatTableRow>
+    </MatTable> 
+ }  
+</div>
+
+
+
+
+
+
+@code {
+    bool loadingTheKey = false;
+    string theKey = "";
+
+    bool loadingCountries = false;
+    RequestContries reqdata = new RequestContries();
+    List<ResponseCountries> countrylist = null;
+
+    protected async Task GetTheKey(MouseEventArgs e)
+    {
+        loadingTheKey = true;
+        theKey = await Http.GetStringAsync("api/Test/GetTheKey");
+        loadingTheKey = false;
+    }    
+    
+    protected async Task GetCountries(MouseEventArgs e)
+    {   // Demo, den laaaang veien
+        loadingCountries = true;
+        countrylist = null;
+
+        using (var request = new HttpRequestMessage(HttpMethod.Post, "api/Test/GetCountries"))
+        {
+            var json = JsonConvert.SerializeObject(reqdata);
+            using (var stringContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json"))
+            {
+                request.Content = stringContent;
+
+                using (var response = await Http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false))
+                {
+                    response.EnsureSuccessStatusCode();
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    countrylist = JsonConvert.DeserializeObject<List<ResponseCountries>>(jsonString);
+                }
+            }
+        }
+        loadingCountries = false;
+    }
+}

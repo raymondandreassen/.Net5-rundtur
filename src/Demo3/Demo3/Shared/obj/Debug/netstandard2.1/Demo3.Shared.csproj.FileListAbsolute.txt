@@ -1,0 +1,9 @@
+D:\repos\.Net5-rundtur\src\Demo3\Demo3\Shared\bin\Debug\netstandard2.1\Demo3.Shared.deps.json
+D:\repos\.Net5-rundtur\src\Demo3\Demo3\Shared\bin\Debug\netstandard2.1\Demo3.Shared.dll
+D:\repos\.Net5-rundtur\src\Demo3\Demo3\Shared\bin\Debug\netstandard2.1\Demo3.Shared.pdb
+D:\repos\.Net5-rundtur\src\Demo3\Demo3\Shared\obj\Debug\netstandard2.1\Demo3.Shared.csprojAssemblyReference.cache
+D:\repos\.Net5-rundtur\src\Demo3\Demo3\Shared\obj\Debug\netstandard2.1\Demo3.Shared.AssemblyInfoInputs.cache
+D:\repos\.Net5-rundtur\src\Demo3\Demo3\Shared\obj\Debug\netstandard2.1\Demo3.Shared.AssemblyInfo.cs
+D:\repos\.Net5-rundtur\src\Demo3\Demo3\Shared\obj\Debug\netstandard2.1\Demo3.Shared.csproj.CoreCompileInputs.cache
+D:\repos\.Net5-rundtur\src\Demo3\Demo3\Shared\obj\Debug\netstandard2.1\Demo3.Shared.dll
+D:\repos\.Net5-rundtur\src\Demo3\Demo3\Shared\obj\Debug\netstandard2.1\Demo3.Shared.pdb

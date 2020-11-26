@@ -77,14 +77,28 @@ using Microsoft.JSInterop;
 #nullable disable
 #nullable restore
 #line 10 "D:\repos\.Net5-rundtur\src\Demo1\Demo1\Client\_Imports.razor"
-using Demo1.Client;
+using MatBlazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 11 "D:\repos\.Net5-rundtur\src\Demo1\Demo1\Client\_Imports.razor"
+using Demo1.Client;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\repos\.Net5-rundtur\src\Demo1\Demo1\Client\_Imports.razor"
 using Demo1.Client.Shared;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "D:\repos\.Net5-rundtur\src\Demo1\Demo1\Client\_Imports.razor"
+using BlazorPro.Spinkit;
 
 #line default
 #line hidden

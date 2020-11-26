@@ -1,0 +1,7 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="D:\repos\.Net5-rundtur\src\Demo3\Demo3\Client\bin\Debug\netstandard2.1\browser-wasm\wwwroot\" />
+  <ContentRoot BasePath="_content/BlazorPro.Spinkit" Path="C:\Users\Raymo\.nuget\packages\blazorpro.spinkit\1.2.0\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/MatBlazor" Path="C:\Users\Raymo\.nuget\packages\matblazor\2.8.0\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication" Path="C:\Users\Raymo\.nuget\packages\microsoft.aspnetcore.components.webassembly.authentication\3.2.1\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Microsoft.Authentication.WebAssembly.Msal" Path="C:\Users\Raymo\.nuget\packages\microsoft.authentication.webassembly.msal\3.2.1\build\..\staticwebassets\" />
+</StaticWebAssets>

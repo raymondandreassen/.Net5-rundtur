@@ -1,0 +1,32 @@
+﻿@page "/authentication/{action}"
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@*<RemoteAuthenticatorView Action="@Action" />*@
+
+
+<RemoteAuthenticatorView Action="@Action">
+    <LogInFailed>
+        <div class="alert alert-danger" role="alert">@strLogInFailed</div>
+    </LogInFailed>
+    <LogOut>
+        <div class="alert alert-info" role="alert">@strLogOut</div>
+    </LogOut>
+    <LogOutSucceeded>
+        <div class="alert alert-success" role="alert">@strLogOutSucceeded</div>
+    </LogOutSucceeded>
+    <LoggingIn>
+        <div class="alert alert-info" role="alert">@strLoggingIn</div>
+    </LoggingIn>
+    <CompletingLoggingIn>
+        <div class="alert alert-success" role="alert">@strCompletingLoggingIn</div>
+    </CompletingLoggingIn>
+</RemoteAuthenticatorView>
+
+@code {
+    [Parameter] public string Action { get; set; }
+
+    string strLogInFailed           = "Din pålogging var IKKE vellykket.";
+    string strLogOut                = "Forsøker å lukke din sesjon mot UiT.";
+    string strLogOutSucceeded       = "Din pålogget sesjon mot UiT har blitt avsluttet.";
+    string strLoggingIn             = "Sender deg til UiT sin Office365 pålogging.";
+    string strCompletingLoggingIn   = "Påloggingen til UiT var vellykket.";
+}
