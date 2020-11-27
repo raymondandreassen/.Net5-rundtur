@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7AIRUr4ClSmEj2vEKyHIwGDLf51u9Jz4DMvDRSNc2gRF2bgJOlMwnB1cnBaTNTa8bmlPs4DnKGLF25wSVZKVAw==",
+  "dgSpecHash": "MRWo/HiwyH3434vOOU+pprQc9twVuUk2SwKVpiqoaQSQ1m+5rn1ydtJBPLr0mQyx1LXH1xWZoh4VoBScdKZ8FQ==",
   "success": true,
   "projectFilePath": "D:\\repos\\.Net5-rundtur\\src\\Demo4\\Demo4\\Server\\Demo4.Server.csproj",
   "expectedPackageFiles": [
@@ -93,6 +93,7 @@
     "C:\\Users\\Raymo\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Raymo\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Raymo\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\Raymo\\.nuget\\packages\\seq.extensions.logging\\4.0.2\\seq.extensions.logging.4.0.2.nupkg.sha512",
     "C:\\Users\\Raymo\\.nuget\\packages\\serilog\\2.9.0\\serilog.2.9.0.nupkg.sha512",
     "C:\\Users\\Raymo\\.nuget\\packages\\serilog.aspnetcore\\3.4.0\\serilog.aspnetcore.3.4.0.nupkg.sha512",
     "C:\\Users\\Raymo\\.nuget\\packages\\serilog.extensions.hosting\\3.1.0\\serilog.extensions.hosting.3.1.0.nupkg.sha512",

@@ -1,0 +1,47 @@
+﻿@page "/quiz/{quizid:int}"
+@using Newtonsoft.Json
+@inject HttpClient Http
+@inject IMatToaster Toaster
+
+<h3>Quiz</h3>
+
+QuizID: @quizid
+<br /><MatButton Label="Next quiz" Raised="true" OnClick="GetNextQuiz"></MatButton>
+<hr />
+
+
+
+
+@code {
+    [Parameter]
+    public int quizid { get; set; } = 1;
+
+    protected Questionare questionare = null;
+
+    protected async Task GetNextQuiz(MouseEventArgs e)
+    {
+        await LoadQuiz();
+    }
+
+    protected async Task LoadQuiz()
+    {
+        try
+        {        
+            //var response = await Http.GetFromJsonAsync<Questionare>($"/api/Question/GetQuestion?quizId={quizid}");
+
+/*
+            var resp = await Http.GetAsync($"/api/Question/GetQuestion?quizId={quizid}");
+            resp.EnsureSuccessStatusCode();
+            var jsonString = await resp.Content.ReadAsStringAsync();
+            Console.WriteLine(jsonString);
+*/
+
+            //Questionare c = JsonConvert.DeserializeObject<Questionare>(jsonString);
+            }
+            catch(Exception exc)
+            {
+                
+            }
+
+    }
+}

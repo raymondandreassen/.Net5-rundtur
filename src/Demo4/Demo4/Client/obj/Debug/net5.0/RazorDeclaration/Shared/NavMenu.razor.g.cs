@@ -118,7 +118,7 @@ using Demo4.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 33 "D:\repos\.Net5-rundtur\src\Demo4\Demo4\Client\Shared\NavMenu.razor"
+#line 43 "D:\repos\.Net5-rundtur\src\Demo4\Demo4\Client\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

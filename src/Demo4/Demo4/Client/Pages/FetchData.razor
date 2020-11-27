@@ -2,8 +2,10 @@
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Demo4.Shared
+
 @attribute [Authorize]
 @inject HttpClient Http
+@inject IMatToaster Toaster
 
 <h1>Weather forecast</h1>
 
@@ -48,9 +50,11 @@ else
             forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
         }
         catch (AccessTokenNotAvailableException exception)
-        {
-            exception.Redirect();
+        {        
+            Toaster.Add($"Detaljer: {exception.Message}", MatToastType.Warning, "Systemfeil oppstod.");
+            // exception.Redirect();
         }
+        Toaster.Add("Et slags værvarsel er hentet.", MatToastType.Info, "Til din informasjon");
     }
 
 }

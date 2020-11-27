@@ -2,6 +2,7 @@
 
 @using Newtonsoft.Json
 @inject HttpClient Http
+@inject IMatToaster Toaster
 
 <div class="alert alert-info" role="alert">
     <h1>Test page</h1>
@@ -24,9 +25,9 @@
     
     <table width="100%">
         <tr>
-            <td width="33%"><MatTextField Label="Antall land" TValue="int" @bind-Value="reqdata.Countries"></MatTextField></td>
-            <td width="33%"><MatTextField Label="Hvor lang pause (ms)?" TValue="int" @bind-Value="reqdata.Pause"></MatTextField> </td>
-            <td width="34%"><MatButton style="margin: 10px 20px 10px 0px;" Raised="true" Label="Kjør for pause" OnClick="GetCountries"></MatButton></td>
+            <td width="33%"><MatTextField Label="Antall land" TValue="int" @bind-Value="reqdata.Countries" FullWidth="true"></MatTextField></td>
+            <td width="33%"><MatTextField Label="Hvor lang pause (ms)?" TValue="int" @bind-Value="reqdata.Pause" FullWidth="true"></MatTextField> </td>
+            <td width="34%"><MatButton style="margin: 10px 20px 10px 0px; width: 100%" Raised="true" Label="Kjør for pause" OnClick="GetCountries"></MatButton></td>
         </tr>
     </table>
     
@@ -67,6 +68,9 @@
         loadingTheKey = true;
         theKey = await Http.GetStringAsync("api/Test/GetTheKey");
         loadingTheKey = false;
+        Toaster.Add(theKey, MatToastType.Info, "Nøkkelen er hentet");
+
+
     }    
     
     protected async Task GetCountries(MouseEventArgs e)
@@ -90,5 +94,7 @@
             }
         }
         loadingCountries = false;
+        
+        Toaster.Add($"Antall land hentet: {countrylist.Count()}", MatToastType.Info, "Hentet noe data til deg");
     }
 }

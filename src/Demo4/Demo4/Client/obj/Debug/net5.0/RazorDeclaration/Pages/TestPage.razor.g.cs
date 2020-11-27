@@ -126,7 +126,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 57 "D:\repos\.Net5-rundtur\src\Demo4\Demo4\Client\Pages\TestPage.razor"
+#line 58 "D:\repos\.Net5-rundtur\src\Demo4\Demo4\Client\Pages\TestPage.razor"
        
     bool loadingTheKey = false;
     string theKey = "";
@@ -140,6 +140,9 @@ using Newtonsoft.Json;
         loadingTheKey = true;
         theKey = await Http.GetStringAsync("api/Test/GetTheKey");
         loadingTheKey = false;
+        Toaster.Add(theKey, MatToastType.Info, "Nøkkelen er hentet");
+
+
     }    
     
     protected async Task GetCountries(MouseEventArgs e)
@@ -163,11 +166,14 @@ using Newtonsoft.Json;
             }
         }
         loadingCountries = false;
+        
+        Toaster.Add($"Antall land hentet: {countrylist.Count()}", MatToastType.Info, "Hentet noe data til deg");
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMatToaster Toaster { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }
 }

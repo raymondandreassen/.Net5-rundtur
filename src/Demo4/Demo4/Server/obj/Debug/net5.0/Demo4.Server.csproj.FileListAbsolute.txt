@@ -117,3 +117,4 @@ D:\repos\.Net5-rundtur\src\Demo4\Demo4\Server\bin\Debug\net5.0\Microsoft.OpenApi
 D:\repos\.Net5-rundtur\src\Demo4\Demo4\Server\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\repos\.Net5-rundtur\src\Demo4\Demo4\Server\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\repos\.Net5-rundtur\src\Demo4\Demo4\Server\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\repos\.Net5-rundtur\src\Demo4\Demo4\Server\bin\Debug\net5.0\Seq.Extensions.Logging.dll

@@ -125,7 +125,7 @@ using Demo4.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\repos\.Net5-rundtur\src\Demo4\Demo4\Client\Pages\FetchData.razor"
+#line 6 "D:\repos\.Net5-rundtur\src\Demo4\Demo4\Client\Pages\FetchData.razor"
            [Authorize]
 
 #line default
@@ -140,7 +140,7 @@ using Demo4.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 41 "D:\repos\.Net5-rundtur\src\Demo4\Demo4\Client\Pages\FetchData.razor"
+#line 43 "D:\repos\.Net5-rundtur\src\Demo4\Demo4\Client\Pages\FetchData.razor"
        
     private WeatherForecast[] forecasts;
 
@@ -151,15 +151,18 @@ using Demo4.Shared;
             forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
         }
         catch (AccessTokenNotAvailableException exception)
-        {
-            exception.Redirect();
+        {        
+            Toaster.Add($"Detaljer: {exception.Message}", MatToastType.Warning, "Systemfeil oppstod.");
+            // exception.Redirect();
         }
+        Toaster.Add("Et slags værvarsel er hentet.", MatToastType.Info, "Til din informasjon");
     }
 
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMatToaster Toaster { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }
 }

@@ -1,0 +1,9 @@
+﻿@page "/edituser/{usernumber:int}"
+<h3>EditUser</h3>
+
+Du hadde tenkt på redigere på @usernumber
+
+@code {
+    [Parameter]
+    public int usernumber { get; set; }
+}

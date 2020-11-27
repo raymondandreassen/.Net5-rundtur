@@ -1,0 +1,94 @@
+﻿@page "/newuser"
+
+@using Newtonsoft.Json
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject IMatToaster Toaster
+
+<div class="alert alert-info" role="alert">
+    <h1>Opprett en ny bruker</h1>
+</div>
+
+<EditForm EditContext="@editContext">
+<DataAnnotationsValidator />
+<div class="alert alert-info" role="alert">
+    <table width="100%">
+        <tr>
+            <td width="50%"><MatTextField Label="Brukernavn:" TValue="string" @bind-Value="appUser.UserName" FullWidth="true"></MatTextField></td>
+            <td width="50%"><MatTextField Label="Epost:" TValue="string" @bind-Value="appUser.EmailAddress" FullWidth="true"></MatTextField> </td>
+        </tr>        
+        <tr>
+            <td colspan="2"><MatTextField Label="Brukers hemmelighet:" TValue="string" @bind-Value="appUser.UserSecretInfo" FullWidth="true"></MatTextField></td>
+        </tr>
+        <tr>
+            <td colspan="2"><MatDivider></MatDivider></td>
+        </tr>
+        <tr>
+            <td colspan="2"><MatSlideToggle Label="&nbsp;Ansatt eller Student" @bind-Value="appUser.EmployeeOrStudent"></MatSlideToggle></td>
+        </tr>
+        <tr>
+            <td width="50%"><MatTextField Label="Ansatt ID:" TValue="int" @bind-Value="appUser.EmployeeID" FullWidth="true" ReadOnly="appUser.EmployeeOrStudent"></MatTextField></td>
+            <td width="50%"><MatTextField Label="Student ID:" TValue="int" @bind-Value="appUser.StudentNumber" FullWidth="true" ReadOnly="!appUser.EmployeeOrStudent"></MatTextField> </td>
+        </tr>  
+        <tr>
+            <td colspan ="2">
+                <ValidationSummary />
+            </td>
+        </tr>
+        <tr>
+            <td align="center">    
+                <MatButton style="width:300px; margin: 10px 20px 10px 0px;" Raised="true" Label="Registrer bruker" OnClick="RegisterNewUser"></MatButton>
+                <br />
+                <MatProgressBar Indeterminate="true" Closed="!loading"></MatProgressBar>
+            </td>
+        </tr>
+    </table>
+</div>
+</EditForm>
+
+
+@code {
+    AppUser appUser = new AppUser();
+    bool loading = false;
+    private EditContext editContext;
+    
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(appUser);
+    }
+
+    protected async Task RegisterNewUser(MouseEventArgs e)
+    { 
+        var isValid = editContext.Validate();
+        if(!isValid) 
+        {
+            Toaster.Add("Vennligst rett opp feil i skjema.", MatToastType.Info, "Kan ikke sende inn");
+            return;  
+        }
+
+        using (var request = new HttpRequestMessage(HttpMethod.Post, "api/User/NewUser"))
+        {
+            var json = JsonConvert.SerializeObject(appUser);
+            using (var stringContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json"))
+            {
+                request.Content = stringContent;
+
+                using (var response = await Http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false))
+                {
+                    response.EnsureSuccessStatusCode();
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    int? usernumber = JsonConvert.DeserializeObject<int?>(jsonString);
+
+                    if(!usernumber.HasValue)
+                    {
+                        Toaster.Add("Serverside feil.", MatToastType.Warning, "Et eller annet gikk galt");
+                    }
+                    else
+                    {
+                        Navigation.NavigateTo($"/edituser/{usernumber.Value}", false);
+                    }
+                }
+            }
+        }
+    }     
+}

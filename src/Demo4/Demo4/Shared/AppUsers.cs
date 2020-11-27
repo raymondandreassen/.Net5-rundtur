@@ -12,9 +12,18 @@ namespace Demo4.Shared
     {
         /* Advarsel: Overdreven bruk av Data Annotation */
 
-        internal AppUser()
+        public AppUser()
         {
             UserID = Guid.NewGuid();
+            Created = DateTime.Now;
+        }
+        public AppUser(AppUser appuser)
+        {
+            this.UserID = appuser.UserID;
+            this.UserNumber = appuser.UserNumber;
+            this.EmailAddress = appuser.EmailAddress;
+            this.UserSecretInfo = appuser.UserSecretInfo;
+            this.EmployeeOrStudent = appuser.EmployeeOrStudent;
         }
 
         /// <summary>
@@ -22,29 +31,26 @@ namespace Demo4.Shared
         /// </summary>
         [Key]
         [Column(Order = 1)]
-        public Guid UserID { get; }
+        public Guid UserID { get; set;  }
 
-        [Key]
-        [Column(Order = 2)]
         public int UserNumber { get; set; }
 
-        [Required, MaxLength(30, ErrorMessage = "Username must be less than 30 characters"), MinLength(8, ErrorMessage = "Username must be at least 8 char")]
+        [Required, MaxLength(30, ErrorMessage = "Username must be less than 30 characters"), MinLength(6, ErrorMessage = "Username must be at least 6 char")]
         public string UserName { get; set; }
 
         /// <summary>
         /// Maxlength 250 char.
         /// Make the system validate the email address as valid. 
         /// </summary>
-        [EmailAddress, MaxLength(250, ErrorMessage = "Email adress must be valid and less than 250 char")]
+        [Required, EmailAddress, MaxLength(250, ErrorMessage = "Email adress must be valid and less than 250 char")]
         public string EmailAddress { get; set; }
 
         [Encrypted, MaxLength(1000, ErrorMessage = "Secret must be less than 1000 characters"), MinLength(5, ErrorMessage = "Secret must be at least 10 char")]
         public string UserSecretInfo { get; set; }
 
-
         #region System properties
-        [Column("SystemCreated", TypeName = "smalldatetime"), DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime Created { get; init; }
+        [Column("SystemCreated", TypeName = "smalldatetime")]
+        public DateTime Created { get; set; }
 
         [Column("SystemUpdated", TypeName = "smalldatetime")]
         public DateTime Modified { get; set; }
@@ -52,22 +58,12 @@ namespace Demo4.Shared
 
         // Skal ikke ned i databasen, kunne vært en funksjon, struct, etc. 
         [NotMapped]
-        public int SomeTempValue { get; set; }
-    }
+        public bool EmployeeOrStudent { get; set; } = false;
 
-    public class Employee : AppUser
-    {
-        internal Employee() : base()
-        { }
+        [Range(10000, 99999, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int EmployeeID { get; set; }
 
-    }
-
-    public class Student : AppUser
-    {
-        internal Student() : base()
-        { }
-
+        [Range(100000, 999999, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int StudentNumber { get; set; }
     }
 }

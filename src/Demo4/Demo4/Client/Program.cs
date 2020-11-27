@@ -34,6 +34,16 @@ namespace Demo4.Client
                 options.ProviderOptions.DefaultAccessTokenScopes.Add("api://Demo4_Server/user_impersonation");
             });
 
+            builder.Services.AddMatToaster(config =>
+            {
+                config.Position = MatToastPosition.BottomFullWidth;
+                config.PreventDuplicates = true;
+                config.NewestOnTop = true;
+                config.ShowCloseButton = true;
+                config.MaximumOpacity = 95;
+                config.VisibleStateDuration = 5000;
+            });
+
             await builder.Build().RunAsync();
         }
     }

@@ -18,8 +18,8 @@ namespace Demo4.Server.Service
     public class MyServer
     {
 
-        private readonly DatabaseContext _db;
-        private readonly ILogger _log;
+        private readonly DatabaseContext db;
+        private readonly ILogger logger;
         private Service.Helpers.MyServerConfig _mySrvConfig;
 
         #region Server Startup
@@ -28,10 +28,11 @@ namespace Demo4.Server.Service
         public MyServer(DatabaseContext db, ILogger<MyServer> logger, Service.Helpers.MyServerConfig mySrvConfig)
         {
             logger.LogInformation("AppServer starting: Scoped");
-            _log = logger;
-            _db = db;
+            this.logger = logger;
+            this.db = db;
             _mySrvConfig = mySrvConfig;
         }
+
 
         internal MyServer UseConfig(Service.Helpers.MyServerConfig config)
         {
@@ -40,11 +41,11 @@ namespace Demo4.Server.Service
         }
         #endregion
 
+
         internal string GetTheKey()
         {
             return _mySrvConfig.TheKey;
         }
-
 
 
 
@@ -64,6 +65,33 @@ namespace Demo4.Server.Service
                     });                    
             }
             return countryList;
+        }
+
+        internal async Task<int?> NewUser(AppUser appuser)
+        {
+            try
+            {
+                appuser.Modified = DateTime.Now;
+                appuser.UserNumber = Faker.RandomNumber.Next(1000, 1000000);    // Dette er det dummeste jeg har laget !
+
+                db.User.Add(appuser);             
+
+                await db.SaveChangesAsync();
+                AppUser user = db.User.Where(c => c.UserID.Equals(appuser.UserID)).SingleOrDefault();
+                return user.UserNumber;
+            }
+            catch (Exception exc)
+            {
+                logger.LogError("Error on NewUser", exc);
+            }
+            return null;
+        }
+
+        internal async Task<AppUser> SetUser(AppUser appuser)
+        {
+            db.User.Update(appuser);
+            await db.SaveChangesAsync();
+            return appuser;
         }
     }
 }

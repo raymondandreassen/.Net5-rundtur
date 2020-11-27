@@ -12,6 +12,10 @@ using System.Linq;
 using Serilog;
 using Demo4.Server.Service;
 using Microsoft.EntityFrameworkCore;
+using MatBlazor;
+using Seq.Extensions.Logging;
+using Microsoft.Extensions.Logging;
+using Demo4.Server.Service.Helpers;
 
 namespace Demo4.Server
 {
@@ -25,11 +29,15 @@ namespace Demo4.Server
         public IConfiguration Configuration { get; }
 
 
-
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             //    .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
+
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.AddSeq();
+            });
 
             string[] orgins = new string[] { "http://localhost:5000", "https://localhost:5001", "http://localhost:55507", "https://localhost:44343" };
             services.AddCors(opt => opt.AddPolicy("CorsPolicy", c =>
@@ -52,12 +60,18 @@ namespace Demo4.Server
             services.AddScoped<MyServer>();
             //    .UseConfig(myServer_config));  // <--- Kun for å vise at man kan
 
+            // Også mulig
+            //services.AddScoped<MyServer>();
+            //    .UseConfig(myServer_config));  
+
 
             // Swagger
             services.AddSwaggerGen();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddScoped<IDbInitializer, DbInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +81,15 @@ namespace Demo4.Server
             {
                 app.UseDeveloperExceptionPage();
                 app.UseWebAssemblyDebugging();
+
+                // DB seeder, hvis jeg enda IsDevelopment()...
+                //var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+                //using (var scope = scopeFactory.CreateScope())
+                //{
+                //    var dbInitializer = scope.ServiceProvider.GetService<Service.Helpers.IDbInitializer>();
+                //    dbInitializer.Initialize();
+                //    dbInitializer.SeedData();lk
+                //}
             }
             else
             {
@@ -81,7 +104,7 @@ namespace Demo4.Server
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "dotnet Demo");
             });
 
-            //app.UseSerilogRequestLogging();    // <-- Serilog
+            //app.UseSerilogRequestLogging();    
 
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
